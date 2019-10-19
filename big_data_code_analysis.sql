@@ -10,4 +10,8 @@ Select id, count (sms_in), count (sms_out), and count (dur_in), count (dur_out) 
 Where sms_in is not null group by id order by count (sms_in) desc;
 Select id, count (sms_in), count (sms_out), and count (dur_in), count (dur_out) from DATA_SMS
 Where sms_in is not null group by id order by count (sms_in) desc;
+CREATE TABLE DATA_TELE ("ID" VARCHAR2 (70 BYTE),"PROVINCE" VARCHAR2 (70 BYTE), "INTERVAL" VARCHAR2 (70 BYTE),"SQ_PROVNCE" VARCHAR2 (70 BYTE),"PROVINCE_SQ" VARCHAR2 (70 BYTE)) ORGANIZATION EXTERNAL (TYPE ORACLE_LOADER DEFAULT DIRECTORY "MYCSV" ACCESS PARAMETERS ( records delimited by newline fields terminated by ','    ) LOCATION ('italian_tel.csv')) REJECT LIMIT UNLIMITED;
+Select id, sum(PROVINCE_SQ )from data_TELE GROUP BY ID ORDER BY sum(PROVINCE_SQ )  DESC;
+Select id, nvl(sum(SQ_PROVNCE ) ,'0')from data_TELE GROUP BY ID ORDER BY nvl(sum(SQ_PROVNCE ) ,'0') DESC;
+                                                                                      
 
